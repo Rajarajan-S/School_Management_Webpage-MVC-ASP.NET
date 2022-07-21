@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - VMHSS</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link rel="icon" href="~/Images/BrowserIcon.png">
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" >
+        <div class="container">
+           
+            <div class="navbar-header">
+                <img src="~/Images/BrowserIcon.png" alt="Entrance" width="50" height="50"/>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                @RenderSection("Menubar", false)              
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div style="background-color:lightgray; width:auto; height:720px" >
+        @RenderBody()
+        <hr />
+        <footer>
+            
+            <p> &copy; @DateTime.Now.Year - VMHSS</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

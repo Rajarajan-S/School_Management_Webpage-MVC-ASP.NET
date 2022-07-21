@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+@section Menu
+{
+    @Html.ActionLink("Sort list", "Sort", "Home")<br />
+    @Html.ActionLink("Edit list", "Edit", "Home")
+}
+
+<h2>List</h2>
+@{
+    IList<string> names = new List<string>() { "Raja", "Karthi", "Mani", "Aswath" };
+}
+
+<div>
+    <ul>
+        @foreach (string n in names)
+        {
+            <li>@n</li>
+        }
+    </ul>
+</div>
+
+<p>This is List page</p>
+
+
+

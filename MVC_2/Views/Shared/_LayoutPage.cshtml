@@ -1,0 +1,50 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_LayoutPage</title>
+    <link href="~/Content/PartialViewStyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+    <table  border="1" style="font-family:Arial" width="100%">
+        <tr>
+            <td colspan="2" style="text-align:center;background-color:antiquewhite">
+            <h1>Website Header</h1></td>
+        </tr>
+        @*<tr>
+            <td colspan="2" style="text-align:left;background-color:bisque;color:black">
+                @Html.ActionLink("About us", "About")
+                @Html.ActionLink("Name List", "List")
+            </td>
+        </tr>*@
+        <tr>
+            <td style="width:175px; background-color:cadetblue; vertical-align:top">
+                <nav>
+                    @*<h3> Menu </h3>*@
+                    @RenderSection("Menu", false)
+                    @Html.Partial("_Menubar")
+                </nav>
+
+            </td>
+            <td style="width:8000px;height:300px; vertical-align:top;" class="content">
+                @RenderBody()
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center; font-size:x-small">
+                <footer>
+                    <h4> Website Footer </h4>
+                    <p>Contact: 254789</p>
+                    <p>Email: abc@company.ac.in</p>
+                </footer>
+            </td>
+   
+    </table>
+</body>
+</html>

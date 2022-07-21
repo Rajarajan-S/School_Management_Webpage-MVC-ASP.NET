@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        .myLabel {
+            color: red;
+            font-family: Montserrat;
+            font-size: larger;
+        }
+        .myLabel1 {
+            color: blue;
+            font-family: Arial;
+            font-size: small;
+        }
+        .myLabel2 {
+            color: red;
+            background-color: wheat;
+            font-family: Arial;
+            font-size: small;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        @CustomHelperClass.MyCustomLabel("Attachments")
+        <br />
+        <hr />
+        @Html.MyCustomLabel("Upload the files here")
+        <br />
+        <br />
+        @CustomHelperClass.File("0")
+        <br />
+        <br />
+        @Html.File("1")
+        <br />
+        <br />
+        Any other Comments:
+        @CustomHelperClass.MyCustomTextbox()
+        <br />
+        <br />
+        @CustomHelperClass.MyCustomButton("b1")
+        <br />
+        <br />
+        @CustomHelperClass.MyCustomImage("img1","/Images/Airbus-Beluga-A300-600ST-Super-Transporter_1024x768.jpg", "Airbus Belluga","100px", "100px")
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,52 @@
+﻿@using MVC_2.Models
+@model EmployeeClass
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/EmployeeStyleSheet.css" rel="stylesheet" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <td>@Html.HiddenFor(e => e.EmpId)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(e => e.Name, new { @class = "Employee" })</td>
+                <td>@Html.TextBoxFor(e => e.Name)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(e => e.Password, new { @class = "Employee" })</td>
+                <td>@Html.PasswordFor(e => e.Password)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(e => e.Gender, new { @class = "Employee" })</td>
+                <td>
+                    @Html.RadioButtonFor(e => e.Gender, new { id = "male" })Male <br />
+                    @Html.RadioButtonFor(e => e.Gender, new { id = "female" })Female
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(e => e.Degree, new { @class = "Employee" })</td>
+                <td>@Html.DropDownListFor(e => e.Degree, new SelectList(Enum.GetValues(typeof(Degree))))</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(e => e.City, new { @class = "Employee" })</td>
+                <td>@Html.TextBoxFor(e => e.City)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.LabelFor(e => e.IsEmployee, new { @class = "Employee" })</td>
+                <td>@Html.CheckBoxFor(e => e.IsEmployee)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(e => e.Salary, new { @class = "Employee" })</td>
+                <td>@Html.TextBoxFor(e => e.Salary)</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

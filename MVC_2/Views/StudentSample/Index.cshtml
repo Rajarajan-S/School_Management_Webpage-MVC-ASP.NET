@@ -1,0 +1,52 @@
+﻿@using MVC_2.Models
+@model StudentClass
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/StudentSampleStyleSheet.css" rel="stylesheet" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <td>@Html.HiddenFor(s => s.StId)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(s => s.Name, new { @class = "Students" })</td>
+                <td>@Html.TextBoxFor(s => s.Name)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(s => s.Password, new { @class = "Students" })</td>
+                <td>@Html.PasswordFor(s => s.Password)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(s => s.Address, new { @class = "Students" })</td>
+                <td>@Html.TextBoxFor(s => s.Address)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(s => s.Gender, new { @class = "Students" })</td>
+                <td>
+                    @Html.RadioButtonFor(s => s.Gender, new { id = "male" })Male <br />
+                    @Html.RadioButtonFor(s => s.Gender, new { id = "female" })Female
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(s => s.IsStudent, new { @class = "Students" })</td>
+                <td>@Html.CheckBoxFor(s => s.IsStudent)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(s => s.Skills, new { @class = "Students" })</td>
+                <td>@Html.ListBoxFor(s => s.Skills, new SelectList(Enum.GetValues(typeof(skills))))</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(s => s.Qualification, new { @class = "Students" })</td>
+                <td>@Html.DropDownListFor(s => s.Qualification, new SelectList(Enum.GetValues(typeof(Qualification))))</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

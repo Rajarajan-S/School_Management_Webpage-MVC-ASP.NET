@@ -1,0 +1,89 @@
+﻿@model MVC_Validation_Demo.Models.Employee_Class
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <style>
+        //
+    </style>
+    <div>
+        @using (Html.BeginForm("SubmitData", "Employee_", FormMethod.Post))
+        {
+        <table>
+            <tr>
+                <td>
+                    @Html.Label("EmpId")
+                </td>
+                <td>
+                    @Html.TextBox("EmpId")
+                </td>
+                <td style="color:red">
+                    @Html.ValidationMessage("EmpId")
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(e => e.EmpName, new { @class = "Employee_" })
+                </td>
+                <td>
+                    @Html.TextBoxFor(e => e.EmpName)
+                </td>
+                <td style="color:red">
+                    @Html.ValidationMessage("EmpName")
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(e => e.EmpEmail, new { @class = "Employee_" })
+                </td>
+                <td>
+                    @Html.TextBoxFor(e => e.EmpEmail)
+                </td>
+                <td style="color:red">
+                    @Html.ValidationMessage("EmpEmail")
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(e => e.EmpSal, new { @class = "Employee_" })
+                </td>
+                <td>
+                    @Html.TextBoxFor(e => e.EmpSal)
+                </td>
+                <td style="color:red">
+                    @Html.ValidationMessage("EmpSal")
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(e => e.RefCode)
+                </td>
+                <td>
+                    @Html.TextBoxFor(e => e.RefCode)
+                </td>
+                <td style="color:red"> @Html.ValidationMessageFor(e => e.RefCode)</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="Submit" value="Save Data" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" style="color:red">
+                    @Html.ValidationSummary()
+                </td>
+            </tr>
+        </table>
+        }
+    </div>
+</body>
+</html>

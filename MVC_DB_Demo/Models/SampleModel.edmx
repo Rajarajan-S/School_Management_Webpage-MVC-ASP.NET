@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Vivekananda_SchoolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Course_details">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CName" Type="varchar" MaxLength="50" />
+          <Property Name="CSub" Type="varchar" MaxLength="100" />
+          <Property Name="CDuration" Type="int" />
+        </EntityType>
+        <EntityType Name="Enrollment_details">
+          <Key>
+            <PropertyRef Name="eId" />
+          </Key>
+          <Property Name="eId" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="sID" Type="int" />
+          <Property Name="CId" Type="int" />
+          <Property Name="Adm" Type="date" />
+        </EntityType>
+        <EntityType Name="Student_VMHSS">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="char" MaxLength="50" />
+          <Property Name="LastName" Type="char" MaxLength="20" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="Gender" Type="char" MaxLength="1" />
+          <Property Name="Phone" Type="char" MaxLength="10" />
+          <Property Name="Address" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK__Enrollment___CId__1DE57479">
+          <End Role="Course_details" Type="Self.Course_details" Multiplicity="0..1" />
+          <End Role="Enrollment_details" Type="Self.Enrollment_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_details">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Enrollment_details">
+              <PropertyRef Name="CId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Enrollment___sID__1CF15040">
+          <End Role="Student_VMHSS" Type="Self.Student_VMHSS" Multiplicity="0..1" />
+          <End Role="Enrollment_details" Type="Self.Enrollment_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student_VMHSS">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Enrollment_details">
+              <PropertyRef Name="sID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Vivekananda_SchoolModelStoreContainer">
+          <EntitySet Name="Course_details" EntityType="Self.Course_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Enrollment_details" EntityType="Self.Enrollment_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student_VMHSS" EntityType="Self.Student_VMHSS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Enrollment___CId__1DE57479" Association="Self.FK__Enrollment___CId__1DE57479">
+            <End Role="Course_details" EntitySet="Course_details" />
+            <End Role="Enrollment_details" EntitySet="Enrollment_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Enrollment___sID__1CF15040" Association="Self.FK__Enrollment___sID__1CF15040">
+            <End Role="Student_VMHSS" EntitySet="Student_VMHSS" />
+            <End Role="Enrollment_details" EntitySet="Enrollment_details" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Vivekananda_SchoolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Course_details">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CSub" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CDuration" Type="Int32" />
+          <NavigationProperty Name="Enrollment_details" Relationship="Self.FK__Enrollment___CId__1DE57479" FromRole="Course_details" ToRole="Enrollment_details" />
+        </EntityType>
+        <EntityType Name="Enrollment_details">
+          <Key>
+            <PropertyRef Name="eId" />
+          </Key>
+          <Property Name="eId" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sID" Type="Int32" />
+          <Property Name="CId" Type="Int32" />
+          <Property Name="Adm" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Course_details" Relationship="Self.FK__Enrollment___CId__1DE57479" FromRole="Enrollment_details" ToRole="Course_details" />
+          <NavigationProperty Name="Student_VMHSS" Relationship="Self.FK__Enrollment___sID__1CF15040" FromRole="Enrollment_details" ToRole="Student_VMHSS" />
+        </EntityType>
+        <EntityType Name="Student_VMHSS">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Enrollment_details" Relationship="Self.FK__Enrollment___sID__1CF15040" FromRole="Student_VMHSS" ToRole="Enrollment_details" />
+        </EntityType>
+        <Association Name="FK__Enrollment___CId__1DE57479">
+          <End Role="Course_details" Type="Self.Course_details" Multiplicity="0..1" />
+          <End Role="Enrollment_details" Type="Self.Enrollment_details" Multiplicity="*" >
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="Course_details">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Enrollment_details">
+              <PropertyRef Name="CId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Enrollment___sID__1CF15040">
+          <End Role="Student_VMHSS" Type="Self.Student_VMHSS" Multiplicity="0..1" />
+          <End Role="Enrollment_details" Type="Self.Enrollment_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student_VMHSS">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Enrollment_details">
+              <PropertyRef Name="sID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Vivekananda_SchoolEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Course_details" EntityType="Self.Course_details" />
+          <EntitySet Name="Enrollment_details" EntityType="Self.Enrollment_details" />
+          <EntitySet Name="Student_VMHSS" EntityType="Self.Student_VMHSS" />
+          <AssociationSet Name="FK__Enrollment___CId__1DE57479" Association="Self.FK__Enrollment___CId__1DE57479">
+            <End Role="Course_details" EntitySet="Course_details" />
+            <End Role="Enrollment_details" EntitySet="Enrollment_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Enrollment___sID__1CF15040" Association="Self.FK__Enrollment___sID__1CF15040">
+            <End Role="Student_VMHSS" EntitySet="Student_VMHSS" />
+            <End Role="Enrollment_details" EntitySet="Enrollment_details" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Vivekananda_SchoolModelStoreContainer" CdmEntityContainer="Vivekananda_SchoolEntities">
+          <EntitySetMapping Name="Course_details">
+            <EntityTypeMapping TypeName="Vivekananda_SchoolModel.Course_details">
+              <MappingFragment StoreEntitySet="Course_details">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CSub" ColumnName="CSub" />
+                <ScalarProperty Name="CDuration" ColumnName="CDuration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Enrollment_details">
+            <EntityTypeMapping TypeName="Vivekananda_SchoolModel.Enrollment_details">
+              <MappingFragment StoreEntitySet="Enrollment_details">
+                <ScalarProperty Name="eId" ColumnName="eId" />
+                <ScalarProperty Name="sID" ColumnName="sID" />
+                <ScalarProperty Name="CId" ColumnName="CId" />
+                <ScalarProperty Name="Adm" ColumnName="Adm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student_VMHSS">
+            <EntityTypeMapping TypeName="Vivekananda_SchoolModel.Student_VMHSS">
+              <MappingFragment StoreEntitySet="Student_VMHSS">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

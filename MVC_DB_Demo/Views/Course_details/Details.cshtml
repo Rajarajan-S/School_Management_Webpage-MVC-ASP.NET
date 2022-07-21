@@ -1,0 +1,42 @@
+﻿@model MVC_DB_Demo.Models.Course_details
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Course_details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CSub)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CSub)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CDuration)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

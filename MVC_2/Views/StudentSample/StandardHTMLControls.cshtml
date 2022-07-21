@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>StandardHTMLControls</title>
+    <link href="~/Content/StudentSampleStyleSheet.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div>
+        @using (Html.BeginForm("StandardHTMLControls", "StudentSample"))
+        {
+            <table>
+                <tr>
+                    <td>@Html.Label("Name:", new { Id = "sId" })</td>
+                    <td>@Html.TextBox("txt_name", "Raja", new { @class = "Students", id = "txt1" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Password:")</td>
+                    <td>@Html.Password("pwd")</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("City")</td>
+                    <td>@Html.TextArea("txt_City", "Coimbatore", new { @class = "Students" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Languages known:")</td>
+                    <td>@Html.CheckBox("English")English
+                    @Html.CheckBox("Tamil")Tamil</td>
+                </tr>
+                <tr>
+                    <td>@Html.Label("Gender:")</td>
+                    <td>@Html.RadioButton("gender", "Male", new { id = "male" })Male
+                    @Html.RadioButton("gender", "Female", new { id = "female" })Female</td>
+                </tr>
+                <tr>
+                    @{
+                        IList<string> Courseslist = new List<string> { "BE", "BTech", "ME", "MTech" };
+                    }
+                    <td>@Html.Label("Qulification  :")</td>
+                    <td>
+                        @Html.DropDownList("degree", new SelectList(Courseslist, Courseslist.FirstOrDefault()))
+                        <br />
+                        @*Alternate method to create list*@
+                        @*@{
+                            List<SelectListItem> items = new List<SelectListItem>();
+
+                            items.Add(new SelectListItem { Text = "BE", Value = "0" });
+                            items.Add(new SelectListItem { Text = "BTech", Value = "1" });
+                            items.Add(new SelectListItem { Text = "ME", Value = "2" });
+                            items.Add(new SelectListItem { Text = "MTech", Value = "3" });
+                        }
+                        @Html.DropDownList("degree", items)*@
+                    </td>
+                </tr>
+                <tr>
+                    @{
+                        IList<string> Skillslist = new List<string>
+                            {
+                                "Communication", "Leadership","Core technical skills","Programming skills"
+
+                            };
+                    }
+                    <td>@Html.Label("Skills :")</td>
+                    <td>@Html.ListBox("skills", new SelectList(Skillslist, Skillslist.FirstOrDefault()))</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="Submit" />
+                    </td>
+                </tr>
+            </table>
+         }
+        </div>
+</body>
+</html>

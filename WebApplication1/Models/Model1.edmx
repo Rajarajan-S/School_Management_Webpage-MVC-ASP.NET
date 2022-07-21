@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FtblModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Contract_Management">
+          <Key>
+            <PropertyRef Name="C_id" />
+          </Key>
+          <Property Name="C_id" Type="int" Nullable="false" />
+          <Property Name="Playerid" Type="int" />
+          <Property Name="position" Type="varchar" MaxLength="4" />
+          <Property Name="Contracts" Type="date" />
+          <Property Name="contracts_Left" Type="date" />
+        </EntityType>
+        <EntityType Name="Player_Details">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Player_Name" Type="varchar" MaxLength="20" />
+          <Property Name="Matches_Played" Type="int" />
+          <Property Name="Goals" Type="int" />
+          <Property Name="Assists" Type="int" />
+          <Property Name="Position" Type="varchar" MaxLength="4" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="Pos_id" />
+          </Key>
+          <Property Name="Pos_id" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Pos_nm" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK__Contract___Playe__182C9B23">
+          <End Role="Player_Details" Type="Self.Player_Details" Multiplicity="0..1" />
+          <End Role="Contract_Management" Type="Self.Contract_Management" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player_Details">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Contract_Management">
+              <PropertyRef Name="Playerid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Contract___posit__1920BF5C">
+          <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
+          <End Role="Contract_Management" Type="Self.Contract_Management" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="Pos_id" />
+            </Principal>
+            <Dependent Role="Contract_Management">
+              <PropertyRef Name="position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Player_De__Posit__15502E78">
+          <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
+          <End Role="Player_Details" Type="Self.Player_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="Pos_id" />
+            </Principal>
+            <Dependent Role="Player_Details">
+              <PropertyRef Name="Position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FtblModelStoreContainer">
+          <EntitySet Name="Contract_Management" EntityType="Self.Contract_Management" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Player_Details" EntityType="Self.Player_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Contract___Playe__182C9B23" Association="Self.FK__Contract___Playe__182C9B23">
+            <End Role="Player_Details" EntitySet="Player_Details" />
+            <End Role="Contract_Management" EntitySet="Contract_Management" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contract___posit__1920BF5C" Association="Self.FK__Contract___posit__1920BF5C">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Contract_Management" EntitySet="Contract_Management" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Player_De__Posit__15502E78" Association="Self.FK__Player_De__Posit__15502E78">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Player_Details" EntitySet="Player_Details" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FtblModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Contract_Management">
+          <Key>
+            <PropertyRef Name="C_id" />
+          </Key>
+          <Property Name="C_id" Type="Int32" Nullable="false" />
+          <Property Name="Playerid" Type="Int32" />
+          <Property Name="position" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="Contracts" Type="DateTime" Precision="0" />
+          <Property Name="contracts_Left" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Player_Details" Relationship="Self.FK__Contract___Playe__182C9B23" FromRole="Contract_Management" ToRole="Player_Details" />
+          <NavigationProperty Name="Position1" Relationship="Self.FK__Contract___posit__1920BF5C" FromRole="Contract_Management" ToRole="Position" />
+        </EntityType>
+        <EntityType Name="Player_Details">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Player_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Matches_Played" Type="Int32" />
+          <Property Name="Goals" Type="Int32" />
+          <Property Name="Assists" Type="Int32" />
+          <Property Name="Position" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Contract_Management" Relationship="Self.FK__Contract___Playe__182C9B23" FromRole="Player_Details" ToRole="Contract_Management" />
+          <NavigationProperty Name="Position1" Relationship="Self.FK__Player_De__Posit__15502E78" FromRole="Player_Details" ToRole="Position" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="Pos_id" />
+          </Key>
+          <Property Name="Pos_id" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pos_nm" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Contract_Management" Relationship="Self.FK__Contract___posit__1920BF5C" FromRole="Position" ToRole="Contract_Management" />
+          <NavigationProperty Name="Player_Details" Relationship="Self.FK__Player_De__Posit__15502E78" FromRole="Position" ToRole="Player_Details" />
+        </EntityType>
+        <Association Name="FK__Contract___Playe__182C9B23">
+          <End Role="Player_Details" Type="Self.Player_Details" Multiplicity="0..1" />
+          <End Role="Contract_Management" Type="Self.Contract_Management" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player_Details">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Contract_Management">
+              <PropertyRef Name="Playerid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Contract___posit__1920BF5C">
+          <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
+          <End Role="Contract_Management" Type="Self.Contract_Management" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="Pos_id" />
+            </Principal>
+            <Dependent Role="Contract_Management">
+              <PropertyRef Name="position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Player_De__Posit__15502E78">
+          <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
+          <End Role="Player_Details" Type="Self.Player_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="Pos_id" />
+            </Principal>
+            <Dependent Role="Player_Details">
+              <PropertyRef Name="Position" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FtblEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contract_Management" EntityType="Self.Contract_Management" />
+          <EntitySet Name="Player_Details" EntityType="Self.Player_Details" />
+          <EntitySet Name="Positions" EntityType="Self.Position" />
+          <AssociationSet Name="FK__Contract___Playe__182C9B23" Association="Self.FK__Contract___Playe__182C9B23">
+            <End Role="Player_Details" EntitySet="Player_Details" />
+            <End Role="Contract_Management" EntitySet="Contract_Management" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contract___posit__1920BF5C" Association="Self.FK__Contract___posit__1920BF5C">
+            <End Role="Position" EntitySet="Positions" />
+            <End Role="Contract_Management" EntitySet="Contract_Management" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Player_De__Posit__15502E78" Association="Self.FK__Player_De__Posit__15502E78">
+            <End Role="Position" EntitySet="Positions" />
+            <End Role="Player_Details" EntitySet="Player_Details" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FtblModelStoreContainer" CdmEntityContainer="FtblEntities">
+          <EntitySetMapping Name="Contract_Management">
+            <EntityTypeMapping TypeName="FtblModel.Contract_Management">
+              <MappingFragment StoreEntitySet="Contract_Management">
+                <ScalarProperty Name="C_id" ColumnName="C_id" />
+                <ScalarProperty Name="Playerid" ColumnName="Playerid" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="Contracts" ColumnName="Contracts" />
+                <ScalarProperty Name="contracts_Left" ColumnName="contracts_Left" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Player_Details">
+            <EntityTypeMapping TypeName="FtblModel.Player_Details">
+              <MappingFragment StoreEntitySet="Player_Details">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Player_Name" ColumnName="Player_Name" />
+                <ScalarProperty Name="Matches_Played" ColumnName="Matches_Played" />
+                <ScalarProperty Name="Goals" ColumnName="Goals" />
+                <ScalarProperty Name="Assists" ColumnName="Assists" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="FtblModel.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="Pos_id" ColumnName="Pos_id" />
+                <ScalarProperty Name="Pos_nm" ColumnName="Pos_nm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

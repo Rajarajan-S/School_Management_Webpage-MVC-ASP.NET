@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+}
+
+@section Menubar
+{
+    @Html.ActionLink("Home", "Index", "HomePage", new { area = "" }, new { @class = "navbar-brand" })
+    @Html.ActionLink("Student details", "Index", "Student_VMHSS", new { area = "" }, new { @class = "navbar-brand" })
+    @Html.ActionLink("Course details", "Index", "Course_details", new { area = "" }, new { @class = "navbar-brand" })
+    @Html.ActionLink("Enrollment details", "Index", "Enrollment_details", new { area = "" }, new { @class = "navbar-brand" })
+}
+<table style="background-color:lightgray">
+    <tr>
+        <td align="center">
+            <h4><b>ABOUT US</b></h4> 
+    <img src="~/Images/HomePagePic.png" alt="Entrance" width="1080" height="500" >
+</td>
+    </tr>
+    <tr>
+        <td style="font-size:larger", align="justify"> <p>Started in 1973 by the philanthropic and noble-hearted Mrs.Lalitha Kuzhandaivelu. She devoted all her loving care and attention to the growth and development of the institution. In the year 1988, Mr.K.V.Radha Krishnan took over the charge as the correspondent of the school. Within few years it has made great strides to become one of the topmost schools in Nagai District. It is planned and built with all modern facilities and infrastructure needed for the sound education of a good number of children. The medium of instruction is English. The principle of admission is co-educational. It is noteworthy that the school’s results both in X and XII std public examinations are cent percent with many distinctions. By the unrelenting efforts of the Management and dedication of the staff of the institution, it has been registering remarkable achievement in academics. At present more than 5000 students are studying in our institution.</p></td>
+    </tr>
+</table>
+
